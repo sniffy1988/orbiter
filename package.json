@@ -13,9 +13,10 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.4.47",
+    "@vueuse/core": "^10.7.2",
     "axios": "^1.6.5",
     "pinia": "^2.1.7",
-    "vue": "^3.3.11",
+    "vue": "^3.3.25",
     "vue-material-design-icons": "^5.2.0",
     "vue-router": "^4.2.5"
   },

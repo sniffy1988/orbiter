@@ -1,1 +1,11 @@
 @import './base.css';
+
+body {
+    height: 100vh;
+    margin: 60px 60px 0;
+    overflow: hidden;
+}
+
+ #app {
+    height: 100%;
+ }

@@ -63,14 +63,16 @@ const openPerson = () => {
     isOpen.value = true;
 }
 const closePerson = () => {
-    console.log('close')
     isOpen.value = false;
+    truncate.value = true;
 }
 </script>
 
 <style lang="scss" scoped>
 .person {
-    @apply flex;
+    height: 60px;
+    margin-top: -30px;
+    position: relative;
 
     &__avatar {
         @apply cursor-pointer;
@@ -80,6 +82,7 @@ const closePerson = () => {
 .activitycard {
     @apply relative text-white border rounded-lg;
     max-width: 502px;
+    background: #0A0A0A;
 
     &__head {
         @apply flex mb-2.5 p-2.5 mr-20;
@@ -118,10 +121,10 @@ const closePerson = () => {
     }
 
     &__message {
+        @apply bg-black bg-opacity-65;
 
         &__head {
-            @apply p-2.5 font-light flex bg-opacity-80;
-            background: #0A0A0A;
+            @apply p-2.5 font-light flex bg-black bg-opacity-80;
 
             &__icon {
                 @apply mr-2.5;
@@ -136,7 +139,7 @@ const closePerson = () => {
         }
 
         &__text {
-            @apply p-2.5;
+            @apply p-2.5 bg-black bg-opacity-65;
 
             &__title {
                 @apply font-bold mb-1;
