@@ -1,22 +1,25 @@
 <script setup>
 import { useOrbiterStore } from '@/stores/counter';
 import OrbiterDay from '@/components/OrbiterDay/OrbiterDay.vue'
-import { computed, onMounted, ref } from 'vue';
+import MainSearch from '@/components/MainSearch/MainSearch.vue'
+import { computed, ref, watch } from 'vue';
 
 const store = useOrbiterStore();
 const itemRefs = ref([])
-store.setStartDate('10-01-2023');
-
+const startDate = computed(() => {
+  return store.startDate
+})
 const weekData = computed(() => {
-  console.log(store.weekData)
   return store.weekData;
 })
-onMounted(() => {
-  store.receiveWeek()
-});
+
+
+watch(startDate, () => {
+  store.receiveWeek();
+})
 
 const getOrbitStyle = (index) => {
-  const offset = 100;
+  const offset = 80;
   return {
     left: index * offset + 'px',
     right: index * offset + 'px',
@@ -31,13 +34,7 @@ const getOrbitStyle = (index) => {
       <OrbiterDay v-for="day, index of weekData" :key="day.contact_date" :data="day" class="week-holder__day"
         :style="getOrbitStyle(index)" ref="itemRefs" />
     </div>
-    <div class="main__search">
-      <div>Closed icon</div>
-      <div>
-        <div>back</div>
-        <div>search or command</div>
-      </div>
-    </div>
+    <MainSearch />
   </div>
 </template>
 <style scoped lang="scss">
@@ -50,13 +47,6 @@ const getOrbitStyle = (index) => {
 }
 
 .main {
-  @apply relative;
-  height: 100%;
-
-  &__search {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+  @apply relative h-full;
 }
 </style>

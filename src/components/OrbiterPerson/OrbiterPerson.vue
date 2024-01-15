@@ -81,8 +81,9 @@ const closePerson = () => {
 
 .activitycard {
     @apply relative text-white border rounded-lg;
-    max-width: 502px;
+    width: 502px;
     background: #0A0A0A;
+    z-index: 200;
 
     &__head {
         @apply flex mb-2.5 p-2.5 mr-20;
