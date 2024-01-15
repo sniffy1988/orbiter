@@ -23,8 +23,8 @@
                 <div class="activitycard__message__head"><svg-icon type="mdi" :path="mdiEmailOutline"
                         class="activitycard__message__head__icon"></svg-icon>Reply from Emery Wells</div>
                 <div class="activitycard__message__date">
-                    <p>{{ person.created_at }}Saturday, November 4 2023 at 9:04 AM EST</p>
-                    <p>2 days ago</p>
+                    <p>{{ getFormattedDate(person.created_at) }}</p>
+                    <p>{{ getFormattedAgo(person.created_at) }}</p>
                 </div>
                 <div class="activitycard__message__text">
                     <h4 class="activitycard__message__text__title">{{ person._orbits_last_message.message_head }}</h4>
@@ -43,10 +43,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import format from 'date-fns/format'
 import AvatarSmall from '@/components/AvatarSmall/AvatarSmall.vue'
 import { mdiEmailOutline, mdiChevronUp, mdiChevronDown } from '@mdi/js';
 import SvgIcon from '@jamescoyle/vue-icon';
-
+import TimeAgo from 'javascript-time-ago'
 
 defineProps({
     person: {
@@ -54,6 +55,8 @@ defineProps({
         required: true
     }
 })
+const timeAgo = new TimeAgo('en-US')
+
 const isOpen = ref(false);
 const truncate = ref(true);
 const toggleTruncate = () => {
@@ -65,6 +68,15 @@ const openPerson = () => {
 const closePerson = () => {
     isOpen.value = false;
     truncate.value = true;
+}
+
+const getFormattedDate = (date) => {
+
+    return format(new Date(date), 'eeee, LLLL d yyyy') + ' at ' + format(new Date(date), ' hh:mma z')
+}
+
+const getFormattedAgo = (date) => {
+    return timeAgo.format(new Date(date))
 }
 </script>
 

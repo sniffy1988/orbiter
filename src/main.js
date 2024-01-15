@@ -2,7 +2,10 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
+TimeAgo.addDefaultLocale(en)
 import App from './App.vue'
 import router from './router'
 
